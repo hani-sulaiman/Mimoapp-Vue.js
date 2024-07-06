@@ -1,0 +1,880 @@
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+
+:root {
+    --light-color: rgb(129, 129, 129);
+
+    --yello-hue: 69;
+    --yello-saturation: 91.9%;
+    --yello-lightness: 71%;
+    --yello-mix: hsl(var(--yello-hue), var(--yello-saturation), var(--yello-lightness));
+    --yello-icon: hsl(var(--yello-hue), var(--yello-saturation), calc(var(--yello-lightness) - 10%));
+    --yello-gradient-note: linear-gradient(170deg, var(--yello-mix) 35%, hsl(var(--yello-hue), var(--yello-saturation), calc(var(--yello-lightness) + 10%)) 100%);
+    --yello-gradient-folder: linear-gradient(170deg,
+            hsl(var(--yello-hue), var(--yello-saturation), calc(var(--yello-lightness) + 10%)) 35%,
+            hsl(var(--yello-hue), var(--yello-saturation), calc(var(--yello-lightness) + 20%)) 100%);
+
+    --green-hue: 120;
+    --green-saturation: 47.2%;
+    --green-lightness: 46.1%;
+    --green-mix: hsl(var(--green-hue), var(--green-saturation), var(--green-lightness));
+    --green-icon: hsl(var(--green-hue), var(--green-saturation), calc(var(--green-lightness) - 10%));
+    --green-gradient-note: linear-gradient(170deg, var(--green-mix) 35%, hsl(var(--green-hue), var(--green-saturation), calc(var(--green-lightness) + 10%)) 100%);
+    --green-gradient-folder: linear-gradient(170deg,
+            hsl(var(--green-hue), var(--green-saturation), calc(var(--green-lightness) + 10%)) 35%,
+            hsl(var(--green-hue), var(--green-saturation), calc(var(--green-lightness) + 20%)) 100%);
+
+    --red-hue: 0;
+    --red-saturation: 100%;
+    --red-lightness: 77.1%;
+    --red-mix: hsl(var(--red-hue), var(--red-saturation), var(--red-lightness));
+    --red-gradient-note: linear-gradient(170deg, var(--red-mix) 35%, hsl(var(--red-hue), var(--red-saturation), calc(var(--red-lightness) + 10%)) 100%);
+    --red-icon: hsl(var(--red-hue), var(--red-saturation), calc(var(--red-lightness) - 10%));
+    --red-gradient-folder: linear-gradient(170deg,
+            hsl(var(--red-hue), var(--red-saturation), calc(var(--red-lightness) + 10%)) 35%,
+            hsl(var(--red-hue), var(--red-saturation), calc(var(--red-lightness) + 20%)) 100%);
+
+    --purple-hue: 300;
+    --purple-saturation: 50.8%;
+    --purple-lightness: 47.1%;
+    --purple-mix: hsl(var(--purple-hue), var(--purple-saturation), var(--purple-lightness));
+    --purple-icon: hsl(var(--purple-hue), var(--purple-saturation), calc(var(--purple-lightness) - 10%));
+    --purple-gradient-note: linear-gradient(170deg, var(--purple-mix) 35%, hsl(var(--purple-hue), var(--purple-saturation), calc(var(--purple-lightness) + 10%)) 100%);
+    --purple-gradient-folder: linear-gradient(170deg,
+            hsl(var(--purple-hue), var(--purple-saturation), calc(var(--purple-lightness) + 10%)) 35%,
+            hsl(var(--purple-hue), var(--purple-saturation), calc(var(--purple-lightness) + 20%)) 100%);
+
+    --blue-hue: 202;
+    --blue-saturation: 100%;
+    --blue-lightness: 65.1%;
+    --blue-mix: hsl(var(--blue-hue), var(--blue-saturation), var(--blue-lightness));
+    --blue-icon: hsl(var(--blue-hue), var(--blue-saturation), calc(var(--blue-lightness) - 10%));
+    --blue-gradient-note: linear-gradient(170deg, var(--blue-mix) 35%, hsl(var(--blue-hue), var(--blue-saturation), calc(var(--blue-lightness) + 10%)) 100%);
+    --blue-gradient-folder: linear-gradient(170deg,
+            hsl(var(--blue-hue), var(--blue-saturation), calc(var(--blue-lightness) + 10%)) 35%,
+            hsl(var(--blue-hue), var(--blue-saturation), calc(var(--blue-lightness) + 25%)) 100%);
+}
+
+* {
+    font-family: "Reddit Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.3fr 1.7fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "nav"
+        "main";
+    height: 100vh;
+    background-color: #fff;
+}
+
+.container .main {
+    display: grid;
+    grid-template-columns: 0.3fr 1.7fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "aside notes";
+    grid-area: main;
+}
+
+.container .notes {
+    grid-area: notes;
+    background-color: rgba(238, 243, 249, 0.841);
+    border-top-left-radius: 20px;
+    height: calc(100vh - 103px);
+    overflow-y: scroll;
+    padding: 0px 40px;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1.6fr 0.4fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "container-notes create-buttons";
+}
+
+.container .notes::-webkit-scrollbar {
+    display: none;
+}
+
+.container .aside {
+    grid-area: aside;
+}
+
+.container .nav {
+    grid-area: nav;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container .nav .logo {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.container .nav .logo span {
+    margin-left: 10px;
+}
+
+.container .nav .logo img {
+    width: 40px;
+}
+
+.container .nav .user {
+    display: flex;
+    align-items: center;
+}
+
+.container .nav .user button {
+    margin-left: 20px;
+}
+
+.container .nav .user img {
+    margin: 0px 10px;
+    border-radius: 50%;
+}
+
+.container .nav .user p {
+    font-size: 13px;
+}
+
+.container .nav .search {
+    margin: 0px 200px;
+    padding: 5px 12px;
+    border-radius: 5px;
+    background-color: rgb(248, 248, 248);
+}
+
+.container .nav .search i {
+    color: var(--light-color);
+}
+
+.container .nav .search input[type="search"] {
+    height: 28px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--light-color);
+    text-indent: 3px;
+}
+
+.container .nav button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.container .nav button i {
+    font-size: 30px;
+}
+
+.container .aside .container-aside {
+    display: flex;
+    flex-direction: column;
+    padding: 28px 0px 0px 57px;
+}
+
+.container .aside .container-aside a,
+.container .aside .container-aside button {
+    margin: 15px 0px;
+    color: rgb(180, 180, 180);
+    text-decoration: none;
+}
+
+.container .aside .container-aside a span,
+.container .aside .container-aside button span {
+    margin-left: 5px;
+}
+
+.container .aside .container-aside a.active {
+    color: black;
+}
+
+.container .notes .container-notes {
+    grid-area: container-notes;
+}
+
+.container .notes .create-buttons {
+    grid-area: create-buttons;
+    display: grid;
+    grid-auto-flow: 1f;
+    gap: 0px 0px;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "new-folder" "new-note";
+    height: 100%;
+}
+
+.container .notes .container-notes .section .buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+}
+
+.container .notes .container-notes .section .buttons a {
+    text-decoration: none;
+    color: rgb(188, 188, 188);
+    font-size: 14px;
+    padding-bottom: 2px;
+}
+
+.container .notes .container-notes .section .buttons a.active {
+    color: rgb(77, 77, 77);
+    border-bottom: 2px solid rgb(108, 108, 108);
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+}
+
+.container .notes .container-notes .section .cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.container .notes .container-notes .section.folders .cards .card {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 110px;
+    padding: 20px;
+    border-radius: 14px;
+    background-color: rgb(253, 186, 186);
+    margin-bottom: 20px;
+}
+
+.container .notes .container-notes .section.folders .cards .card .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.container .notes .container-notes .section.folders .cards .card .head button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.container .notes .container-notes .section.folders .cards .card .head button i {
+    font-size: 17px;
+    -webkit-text-stroke: 0.5px;
+}
+
+.container .notes .container-notes .section.folders .cards .card .head i.bi-sticky-fill {
+    font-size: 38px;
+    color: chocolate;
+}
+
+.container .notes .container-notes .section.folders .cards .card .body {
+    margin-top: 15px;
+}
+
+.container .notes .container-notes .section.folders .cards .card .body .title {
+    font-size: 18px;
+    color: rgb(40, 40, 40);
+    font-weight: 700;
+}
+
+.container .notes .container-notes .section.folders .cards .card .body .details {
+    font-size: 11px;
+    padding-top: 3px;
+    color: rgb(123, 123, 123);
+}
+
+.container .notes .create-buttons .new-folder {
+    grid-area: new-folder;
+    display: flex;
+    align-items: center;
+}
+
+.container .notes .create-buttons .new-note {
+    grid-area: new-note;
+    display: flex;
+    align-items: center;
+}
+
+.container .notes .create-buttons .new-folder button,
+.container .notes .create-buttons .new-note button {
+    width: 120px;
+    height: 120px;
+    margin: 50px 30px 30px 50px;
+    border-radius: 17px;
+    border: 2px dashed rgb(188, 188, 188);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.container .notes .create-buttons .new-folder button i,
+.container .notes .create-buttons .new-note button i {
+    font-size: 20px;
+}
+
+.container .notes .section.my-notes {
+    margin-top: 40px;
+}
+
+
+.container .notes .container-notes .section.my-notes .cards .card {
+    display: flex;
+    flex-direction: column;
+    height: 270px;
+    width: 250px;
+    padding: 20px;
+    border-radius: 14px;
+    background-color: rgb(253, 186, 186);
+    margin-bottom: 20px;
+}
+
+.container .notes .container-notes .section.my-notes .cards .card .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+}
+
+.container .notes .container-notes .section.my-notes .cards .card .head .right {
+    position: relative;
+    top: 10px;
+}
+
+.container .notes .container-notes .section.my-notes .cards .card .head .right i {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.container .notes .container-notes .section.my-notes .cards .card .head .left .date {
+    font-size: 11px;
+    color: rgb(123, 123, 123);
+    font-weight: 400;
+    margin: 3px 0px;
+}
+
+.container .notes .container-notes .section.my-notes .cards .card .body {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.container .notes .container-notes .section.my-notes .cards .card .body .content {
+    font-size: 14px;
+    padding-top: 3px;
+    font-weight: 400;
+    color: rgb(74, 74, 74);
+    max-height: 187px;
+    overflow: hidden;
+}
+
+.container .notes .container-notes .section.my-notes .cards .card .body .reminder {
+    display: flex;
+    align-items: center;
+}
+
+.container .notes .container-notes .section.my-notes .cards .card .body .reminder i {
+    font-size: 16px;
+    color: rgb(32, 32, 32);
+    -webkit-text-stroke: 1px;
+}
+
+.container .notes .container-notes .section.my-notes .cards .card .body .reminder span {
+    font-size: 11px;
+    margin-left: 5px;
+    color: rgb(62, 62, 62);
+}
+
+
+/* COLORS */
+.container .notes .container-notes .section.folders .cards .card:nth-child(1) {
+    background: var(--blue-gradient-folder);
+}
+
+.container .notes .container-notes .section.folders .cards .card:nth-child(2) {
+    background: var(--red-gradient-folder);
+}
+
+.container .notes .container-notes .section.folders .cards .card:nth-child(3) {
+    background: var(--yello-gradient-folder);
+}
+
+.container .notes .container-notes .section.folders .cards .card:nth-child(1) .head i.bi-sticky-fill {
+    color: rgba(138, 32, 238, 0.673);
+}
+
+.container .notes .container-notes .section.folders .cards .card:nth-child(2) .head i.bi-sticky-fill {
+    color: chocolate;
+}
+
+.container .notes .container-notes .section.folders .cards .card:nth-child(3) .head i.bi-sticky-fill {
+    color: rgb(203, 246, 110);
+}
+
+.container .notes .container-notes .section.my-notes .cards .card:nth-child(3) {
+    background: var(--blue-gradient-note);
+}
+
+.container .notes .container-notes .section.my-notes .cards .card:nth-child(2) {
+    background: var(--red-gradient-note)
+}
+
+.container .notes .container-notes .section.my-notes .cards .card:nth-child(1) {
+    background: var(--yello-gradient-note)
+}
+
+.floating-buttons {
+    display: none;
+}
+
+.container .aside .slide-button {
+    display: none;
+}
+
+.form-popup {
+    position: absolute;
+    background-color: #fff;
+    width: 400px;
+    height: 500px;
+    top: 130px;
+    left: 550px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px #0000000a;
+    animation-name: popup-form;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    display: none;
+    overflow: hidden;
+}
+
+.form-popup.folder-form {
+    width: 400px;
+    height: 200px;
+}
+
+.form-popup .container-form {
+    position: relative;
+    height: 100%;
+}
+
+.form-popup .container-form form {
+    height: 100%;
+}
+
+.form-popup .container-form form .title {
+    border: none;
+    width: 70%;
+    outline: none;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+}
+
+.form-popup .container-form form .content {
+    height: 60%;
+}
+
+.form-popup .container-form form .content textarea {
+    outline: none;
+    padding: 10px 25px;
+    border: none;
+    width: 90%;
+    height: 100%;
+    resize: none;
+}
+
+.form-popup .container-form form .title:focus {
+    border-bottom: 1px solid rgb(153, 153, 153);
+}
+
+.form-popup .container-form form .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.form-popup .container-form form .head .close-form {
+    border: none;
+    background-color: transparent;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.form-popup .container-form form button.create {
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    width: 100%;
+    cursor: pointer;
+    background-color: rgb(22, 172, 22);
+    border: none;
+    color: #fff;
+    font-size: 18px;
+}
+.form-popup.folder-form{
+    animation-name: popup-form-folder;
+}
+@keyframes popup-form {
+    from {
+        top: 200px;
+        opacity: 0;
+    }
+
+    to {
+        top: 130px;
+        opacity: 1;
+    }
+}
+@keyframes popup-form-folder {
+    from {
+        top: 400px;
+        opacity: 0;
+    }
+
+    to {
+        top: 280px;
+        opacity: 1;
+    }
+}
+
+body.form-show .form-popup.active {
+    display: block;
+}
+
+body.form-show {
+    background-color: rgb(0, 0, 0);
+}
+
+body.form-show #app>* {
+    opacity: 0.3;
+}
+body.form-show #app .form-popup{
+    opacity: 1;
+    z-index: 999;
+}
+
+@media only screen and (max-width:1100px) {
+    .form-popup {
+        left: 30%;
+        width: 100%;
+    }
+
+    .container .nav .user {
+        display: none;
+    }
+
+    .container .nav .search {
+        margin: 0;
+    }
+
+    .container .aside .container-aside {
+        padding: 28px 0px 0px 35px;
+    }
+
+    .container .main {
+        grid-template-columns: 0.7fr 1.7fr;
+    }
+
+}
+
+
+
+@media only screen and (max-width:800px) {
+    .form-popup {
+        left: 25%;
+        width: 100%;
+    }
+
+    .container {
+        grid-template-rows: 1fr 1.7fr;
+    }
+
+    .container .nav h1 {
+        font-size: 20px;
+    }
+
+    .container .nav .logo img {
+        width: 30px;
+    }
+
+    .container .nav .search {
+        width: 100px;
+    }
+
+    .container .nav .search input[type='search'] {
+        width: 70px;
+    }
+
+    .container .main {
+        display: flex;
+    }
+
+    .container .aside {
+        position: fixed;
+        z-index: 3;
+        top: 0;
+        background: white;
+        height: 100vh;
+        width: 215px;
+        transform: translateX(-215px);
+    }
+
+    .container .aside.close {
+        animation-name: close-slide;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    .container .aside.open {
+        animation-name: open-slide;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes open-slide {
+        from {
+            transform: translateX(-215px);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes close-slide {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-215px);
+        }
+    }
+
+    .container .aside .container-aside {
+        padding: 28px 0px 0px 42px;
+        position: relative;
+    }
+
+    .container .aside .container-aside .slide-button {
+        display: block;
+        position: absolute;
+        right: -20px;
+        top: 50vh;
+    }
+
+    .container .aside .container-aside .slide-button button {
+        position: relative;
+        background-color: white;
+        width: 35px;
+        height: 45px;
+        padding-left: 13px;
+        border-radius: 50%;
+        font-size: 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .container .main .notes {
+        display: flex;
+        border-top-right-radius: 20px;
+    }
+
+
+
+    .container .notes .container-notes .section.folders .cards .card,
+    .container .notes .container-notes .section.my-notes .cards .card {
+        margin: 10px 0px;
+    }
+
+
+}
+
+/*
+450px -> 570px
+*/
+@media only screen and (max-width:600px) {
+    .form-popup {
+        left: 0;
+        width: 100% !important;
+    }
+
+    .container .main .create-buttons {
+        display: none;
+    }
+
+    .floating-buttons {
+        display: block;
+        position: absolute;
+        bottom: 40px;
+        right: 30px;
+    }
+
+    .floating-buttons .floating-button {
+        width: 65px;
+        height: 65px;
+        font-size: 45px;
+        border-radius: 50%;
+        border: none;
+        background-color: rgb(26, 207, 26);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        -webkit-text-stroke: 1px;
+        box-shadow: 1px 1px 4px #00000078;
+
+    }
+
+    .floating-buttons .floating-button .container-floating.open {
+        animation-name: floating-button-clicker-open;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    .floating-buttons .floating-button .container-floating.close {
+        animation-name: floating-button-clicker-close;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes floating-button-clicker-open {
+        from {
+            transform: rotate(0);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes floating-button-clicker-close {
+        from {
+            transform: rotate(360deg);
+        }
+
+        to {
+            transform: rotate(0);
+        }
+    }
+
+    .floating-buttons .nested-floating-buttons {
+        position: absolute;
+        bottom: 80px;
+        right: 11px;
+    }
+
+    .floating-buttons .nested-floating-buttons .container-buttons {
+        display: flex;
+        flex-direction: column;
+        height: 120px;
+        justify-content: space-around;
+
+    }
+
+    .floating-buttons .nested-floating-buttons .container-buttons button {
+        width: 45px;
+        height: 45px;
+        font-size: 15px;
+        border-radius: 50%;
+        border: none;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        -webkit-text-stroke: 1px;
+        box-shadow: 1px 1px 4px #00000078;
+        visibility: hidden;
+        opacity: 0;
+
+
+    }
+
+    .floating-buttons .nested-floating-buttons.open .container-buttons .add-folder {
+        background-color: chocolate;
+        animation-name: floating-button-open;
+        animation-delay: 0.2s;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    .floating-buttons .nested-floating-buttons.open .container-buttons .add-note {
+        background-color: rgb(30, 141, 210);
+        animation-name: floating-button-open;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    .floating-buttons .nested-floating-buttons.close .container-buttons .add-folder {
+        background-color: chocolate;
+        animation-name: floating-button-close;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    .floating-buttons .nested-floating-buttons.close .container-buttons .add-note {
+        background-color: rgb(30, 141, 210);
+        animation-name: floating-button-close;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes floating-button-open {
+        from {
+            visibility: visible;
+            opacity: 0;
+            transform: translateY(90px);
+        }
+
+        to {
+            transform: translateY(0px);
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    @keyframes floating-button-close {
+        0% {
+            transform: translateY(0px);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        50% {
+            opacity: 0;
+        }
+
+        100% {
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(90px);
+        }
+
+    }
+}
+
+@media only screen and (max-width:400px) {
+    .form-popup {
+        left: 0px;
+    }
+}
